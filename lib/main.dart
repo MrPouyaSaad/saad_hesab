@@ -22,6 +22,7 @@ class MyApp extends StatelessWidget {
       title: 'Saad Hesab',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
+        useMaterial3: true,
         fontFamily: 'IranSans',
         appBarTheme: const AppBarTheme(
           backgroundColor: Color(0xFF004D40),
