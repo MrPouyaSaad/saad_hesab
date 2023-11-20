@@ -4,7 +4,7 @@ import 'package:hive_flutter/hive_flutter.dart';
 import 'package:saad_hesab/data/data.dart';
 import 'package:saad_hesab/home/home_screen.dart';
 
-const String tranactionBoxName = 'tranactionBoxName';
+const String tranactionBoxName = 'transaction';
 void main() async {
   await Hive.initFlutter();
   Hive.registerAdapter(TransactionDataAdapter());
