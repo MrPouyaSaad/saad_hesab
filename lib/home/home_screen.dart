@@ -135,39 +135,43 @@ class HomeScreen extends StatelessWidget {
                         useSafeArea: true,
                         builder: (context) => Container(
                           height: 124,
+                          width: double.infinity,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.only(
                               topRight: Radius.circular(borderRadius),
                               topLeft: Radius.circular(borderRadius),
                             ),
                           ),
-                          child: Column(
+                          child: Row(
                             children: [
-                              BottomSheetItem(
-                                onTap: () {
-                                  Navigator.pop(context);
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) => AddScreen(
-                                        transactionData: transaction,
+                              Expanded(
+                                child: BottomSheetItem(
+                                  onTap: () {
+                                    Navigator.pop(context);
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) => AddScreen(
+                                          transactionData: transaction,
+                                        ),
                                       ),
-                                    ),
-                                  );
-                                },
-                                borderRadius: borderRadius,
-                                title: 'ویرایش',
-                                icon: CupertinoIcons.pen,
+                                    );
+                                  },
+                                  borderRadius: borderRadius,
+                                  title: 'ویرایش',
+                                  icon: CupertinoIcons.pen,
+                                ),
                               ),
-                              const Divider(height: 2),
-                              BottomSheetItem(
-                                onTap: () {
-                                  Navigator.pop(context);
-                                  transaction.delete();
-                                },
-                                borderRadius: borderRadius,
-                                title: 'حذف',
-                                icon: CupertinoIcons.delete,
+                              Expanded(
+                                child: BottomSheetItem(
+                                  onTap: () {
+                                    Navigator.pop(context);
+                                    transaction.delete();
+                                  },
+                                  borderRadius: borderRadius,
+                                  title: 'حذف',
+                                  icon: CupertinoIcons.delete,
+                                ),
                               ),
                             ],
                           ),
@@ -244,6 +248,7 @@ class DeleteAll extends StatelessWidget {
       },
       icon: const Icon(
         CupertinoIcons.delete,
+        color: Colors.white,
         size: 20,
       ),
     );
@@ -343,41 +348,18 @@ class BottomSheetItem extends StatelessWidget {
   final double borderRadius;
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: double.infinity,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.only(
-          topRight: Radius.circular(borderRadius),
-          topLeft: Radius.circular(borderRadius),
-        ),
-      ),
-      child: TextButton(
-        onPressed: onTap,
-        style: ButtonStyle(
-          alignment: Alignment.centerRight,
-          shape: MaterialStatePropertyAll(
-            RoundedRectangleBorder(
-              borderRadius: BorderRadius.only(
-                topRight: Radius.circular(borderRadius),
-                topLeft: Radius.circular(borderRadius),
-              ),
-            ),
-          ),
-        ),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.end,
-          children: [
-            Text(
-              title,
-              style: const TextStyle(fontWeight: FontWeight.bold),
-              textAlign: TextAlign.right,
-            ).marginOnly(top: 16, bottom: 16, right: 16, left: 16),
-            const SizedBox(
-              width: 4,
-            ),
-            Icon(icon),
-          ],
-        ),
+    return TextButton(
+      onPressed: onTap,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+          Icon(icon),
+          Text(
+            title,
+            style: const TextStyle(fontWeight: FontWeight.bold),
+            textAlign: TextAlign.right,
+          ).marginOnly(top: 16, bottom: 16, right: 16, left: 16),
+        ],
       ),
     );
   }
