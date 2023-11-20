@@ -17,7 +17,7 @@ class TransactionDataAdapter extends TypeAdapter<TransactionData> {
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
     return TransactionData()
-      ..price = fields[0] as String
+      ..price = fields[0] as int
       ..title = fields[1] as String
       ..isDeposit = fields[2] as bool
       ..date = fields[3] as String;

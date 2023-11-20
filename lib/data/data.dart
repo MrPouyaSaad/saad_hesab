@@ -4,7 +4,7 @@ part 'data.g.dart';
 @HiveType(typeId: 0)
 class TransactionData extends HiveObject {
   @HiveField(0)
-  String price = '';
+  int price = 0;
 
   @HiveField(1)
   String title = '';
