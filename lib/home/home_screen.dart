@@ -115,7 +115,6 @@ class HomeScreen extends StatelessWidget {
                 padding: const EdgeInsets.only(bottom: 64),
                 reverse: false,
                 itemCount: box.values.length,
-                physics: const BouncingScrollPhysics(),
                 itemBuilder: (context, index) {
                   final TransactionData transaction =
                       box.values.toList()[index];
