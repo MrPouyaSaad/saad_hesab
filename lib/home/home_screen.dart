@@ -7,6 +7,7 @@ import 'package:hive_flutter/hive_flutter.dart';
 import 'package:saad_hesab/add_item/add_item.dart';
 import 'package:saad_hesab/consts/logo.dart';
 import 'package:saad_hesab/data/data.dart';
+import 'package:saad_hesab/info_screen/info_screen.dart';
 import 'package:saad_hesab/main.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -108,8 +109,22 @@ class HomeScreen extends StatelessWidget {
                 ),
                 centerTitle: true,
                 leading: IconButton(
-                  onPressed: () {},
-                  icon: const Icon(Icons.info_outline),
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      CupertinoPageRoute(
+                        builder: (context) {
+                          return InfoScreen(
+                            box: box,
+                          );
+                        },
+                      ),
+                    );
+                  },
+                  icon: const Icon(
+                    Icons.info_outline,
+                    color: Colors.white,
+                  ),
                 ),
                 actions: [
                   DeleteAll(box: box),
