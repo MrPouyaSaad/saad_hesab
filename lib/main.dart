@@ -44,7 +44,7 @@ class SplashScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: AnimatedSplashScreen(
-        duration: 3000,
+        duration: 2000,
         splash: Image.asset('assets/images/saadhesablogo.png'),
         nextScreen: const HomeScreen(),
         splashTransition: SplashTransition.fadeTransition,

@@ -48,8 +48,10 @@ class _AddScreenState extends State<AddScreen> {
         '${picked!.formatter.d} ${picked.formatter.mN}  ,${picked.formatter.yyyy}';
   }
 
-  late final TextEditingController _priceController =
-      TextEditingController(text: widget.transactionData.price);
+  late final TextEditingController _priceController = TextEditingController(
+      text: widget.transactionData.price == 0
+          ? ''
+          : widget.transactionData.price.toString());
   late final TextEditingController _titleController =
       TextEditingController(text: widget.transactionData.title);
   late final TextEditingController _dateController =
@@ -70,60 +72,59 @@ class _AddScreenState extends State<AddScreen> {
           width: double.infinity,
           height: 48,
           child: ElevatedButton(
-              style: ButtonStyle(
-                shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                  RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(36.0),
-                  ),
-                ),
+            style: ElevatedButton.styleFrom(
+              backgroundColor: const Color(0xFF004D40),
+              foregroundColor: Colors.white,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(36.0),
               ),
-              onPressed: () async {
-                if (_titleController.text.isNotEmpty &&
-                    _priceController.text.isNotEmpty) {
-                  widget.transactionData.title = _titleController.text;
-                  widget.transactionData.price = _priceController.text;
-                  widget.transactionData.isDeposit = groupValue == 1;
-                  widget.transactionData.date = _dateController.text.isEmpty
-                      ? Jalali.now().formatShortDate().toString()
-                      : _dateController.text;
+            ),
+            onPressed: () async {
+              if (_titleController.text.isNotEmpty &&
+                  _priceController.text.isNotEmpty) {
+                widget.transactionData.title = _titleController.text;
+                widget.transactionData.price = int.parse(_priceController.text);
+                widget.transactionData.isDeposit = groupValue == 1;
+                widget.transactionData.date = _dateController.text.isEmpty
+                    ? Jalali.now().formatShortDate().toString()
+                    : _dateController.text;
 
-                  if (widget.transactionData.isInBox) {
-                    widget.transactionData.save();
-                    Navigator.pop(context);
-                  } else {
-                    final Box<TransactionData> box =
-                        await Hive.openBox(tranactionBoxName);
-                    box.add(widget.transactionData);
-                    Navigator.pop(context);
-                  }
+                if (widget.transactionData.isInBox) {
+                  widget.transactionData.save();
+                  Navigator.pop(context);
                 } else {
-                  setState(() {
-                    isError = true;
-                  });
+                  final Box<TransactionData> box =
+                      await Hive.openBox(tranactionBoxName);
+                  box.add(widget.transactionData);
+                  Navigator.pop(context);
                 }
-              },
-              child: const Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text('افزودن'),
-                  SizedBox(
-                    width: 8,
-                  ),
-                  Icon(Icons.check),
-                ],
-              )),
+              } else {
+                setState(() {
+                  isError = true;
+                });
+              }
+            },
+            child: const Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text('افزودن'),
+                SizedBox(width: 8),
+                Icon(Icons.check),
+              ],
+            ),
+          ),
         ).marginOnly(left: 16, right: 16),
         //! AppbBar
         appBar: AppBar(
           backgroundColor: Colors.orangeAccent[400],
-          title: const Text('افزودن تراکنش'),
+          foregroundColor: Colors.white,
+          title: const Text(
+            'افزودن تراکنش',
+            style: TextStyle(fontSize: 18),
+          ),
           centerTitle: true,
           elevation: 0.0,
-          leading: IconButton(
-              onPressed: () {
-                Navigator.pop(context);
-              },
-              icon: const Icon(Icons.arrow_back_ios)),
+          leading: const BackButton(),
         ),
         body: Column(
           children: [
