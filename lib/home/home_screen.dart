@@ -107,6 +107,10 @@ class HomeScreen extends StatelessWidget {
                   height: 56,
                 ),
                 centerTitle: true,
+                leading: IconButton(
+                  onPressed: () {},
+                  icon: const Icon(Icons.info_outline),
+                ),
                 actions: [
                   DeleteAll(box: box),
                 ],
