@@ -135,8 +135,9 @@ class HomeScreen extends StatelessWidget {
                 reverse: false,
                 itemCount: box.values.length,
                 itemBuilder: (context, index) {
+                  final int listLength = box.values.length - 1;
                   final TransactionData transaction =
-                      box.values.toList()[index];
+                      box.values.toList()[listLength - index];
                   double borderRadius = 32;
                   //! HOME SCREEN ITEM ---------------------------------
                   return InkWell(
