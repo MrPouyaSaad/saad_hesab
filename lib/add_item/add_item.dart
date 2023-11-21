@@ -55,7 +55,7 @@ class _AddScreenState extends State<AddScreen> {
   late final TextEditingController _titleController =
       TextEditingController(text: widget.transactionData.title);
   late final TextEditingController _dateController =
-      TextEditingController(text: widget.transactionData.title);
+      TextEditingController(text: widget.transactionData.date);
   late bool isDeposit = widget.transactionData.isDeposit;
 
   bool isError = false;
