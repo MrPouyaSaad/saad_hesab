@@ -1,6 +1,7 @@
 import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:saad_hesab/consts/color.dart';
 import 'package:saad_hesab/data/data.dart';
 import 'package:saad_hesab/home/home_screen.dart';
 
@@ -25,12 +26,10 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
         fontFamily: 'IranSans',
         appBarTheme: const AppBarTheme(
-          backgroundColor: Color(0xFF004D40),
+          backgroundColor: primaryColor,
         ),
-        primaryColor: const Color(0xFF004D40),
-        colorScheme: const ColorScheme.light(
-          primary: Color(0xFF004D40),
-        ),
+        primaryColor: primaryColor,
+        colorScheme: const ColorScheme.light(),
       ),
       home: const SplashScreen(),
     );
@@ -43,8 +42,9 @@ class SplashScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: primaryColor,
       body: AnimatedSplashScreen(
-        duration: 2000,
+        duration: 1500,
         splash: Image.asset('assets/images/saadhesablogo.png'),
         nextScreen: const HomeScreen(),
         splashTransition: SplashTransition.fadeTransition,

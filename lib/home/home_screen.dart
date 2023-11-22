@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
 import 'package:saad_hesab/add_item/add_item.dart';
+import 'package:saad_hesab/consts/color.dart';
 import 'package:saad_hesab/consts/logo.dart';
 import 'package:saad_hesab/data/data.dart';
 import 'package:saad_hesab/info_screen/info_screen.dart';
@@ -29,7 +30,6 @@ class HomeScreen extends StatelessWidget {
               backgroundColor: backgroundColor,
               //! ─── Appbar ──────────
               appBar: AppBar(
-                backgroundColor: const Color(0xFF004D40),
                 elevation: 0.0,
                 title: Image.asset(
                   logoPath,
@@ -101,7 +101,6 @@ class HomeScreen extends StatelessWidget {
               ),
               //! AppBar -------------------------------
               appBar: AppBar(
-                backgroundColor: const Color(0xFF004D40),
                 elevation: 0.0,
                 title: Image.asset(
                   logoPath,

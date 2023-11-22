@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:persian_datetime_picker/persian_datetime_picker.dart';
+import 'package:saad_hesab/consts/color.dart';
 
 import 'package:saad_hesab/data/data.dart';
 import 'package:saad_hesab/main.dart';
@@ -74,7 +75,7 @@ class _AddScreenState extends State<AddScreen> {
           height: 48,
           child: ElevatedButton(
             style: ElevatedButton.styleFrom(
-              backgroundColor: const Color(0xFF004D40),
+              backgroundColor: primaryColor,
               foregroundColor: Colors.white,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(36.0),
