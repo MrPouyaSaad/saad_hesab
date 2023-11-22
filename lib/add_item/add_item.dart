@@ -58,7 +58,8 @@ class _AddScreenState extends State<AddScreen> {
       TextEditingController(text: widget.transactionData.date);
   late bool isDeposit = widget.transactionData.isDeposit;
 
-  bool isError = false;
+  bool isPriceError = false;
+  bool isTitleError = false;
   @override
   Widget build(BuildContext context) {
     return Directionality(
@@ -99,9 +100,17 @@ class _AddScreenState extends State<AddScreen> {
                   Navigator.pop(context);
                 }
               } else {
-                setState(() {
-                  isError = true;
-                });
+                if (_titleController.text.isEmpty) {
+                  isTitleError = true;
+                } else {
+                  isTitleError = false;
+                }
+                if (_priceController.text.isEmpty) {
+                  isPriceError = true;
+                } else {
+                  isPriceError = false;
+                }
+                setState(() {});
               }
             },
             child: const Row(
@@ -129,14 +138,14 @@ class _AddScreenState extends State<AddScreen> {
         body: Column(
           children: [
             AddScreenTextFields(
-              isError: isError,
+              isError: isTitleError,
               title: 'عنوان',
               controller: _titleController,
               textInputAction: TextInputAction.next,
               textInputType: TextInputType.text,
             ),
             AddScreenTextFields(
-              isError: isError,
+              isError: isPriceError,
               title: 'مبلغ',
               controller: _priceController,
               textInputAction: TextInputAction.next,
